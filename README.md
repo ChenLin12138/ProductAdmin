@@ -1,5 +1,5 @@
 # ProductAdmin</br>
-
+A low-B project, pls don't wast you time on it.</br>
 What's the proejct</br>
 1.A quite simple project for a product insert/update/select/delete.</br>
 </br>
