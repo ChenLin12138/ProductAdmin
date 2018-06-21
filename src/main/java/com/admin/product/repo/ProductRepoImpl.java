@@ -1,10 +1,14 @@
 package com.admin.product.repo;
 
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcOperations;
+import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
 import com.admin.product.model.Product;
@@ -63,28 +67,70 @@ public class ProductRepoImpl implements ProductRepo {
 				);
 	}
 
+	private static final String GET_PRODUCTS_SQL="SELECT name,"
+			+ "description,price,id FROM products";
 	@Override
 	public List<Product> getProducts() {
-		// TODO Auto-generated method stub
-		return null;
+		List<Map<String, Object>> resultList = jdbcOperations.queryForList(GET_PRODUCTS_SQL);	
+		List<Product> products = new ArrayList<Product>();
+		for(Map<String, Object> map: resultList) {
+			Product ps = new Product();
+			ps.setId((int)map.get("id"));
+			ps.setDescription((String)map.get("description"));
+			ps.setName((String)map.get("name"));
+			ps.setPrice((Float)map.get("price"));
+			products.add(ps);
 	}
-
+		return products;
+	}
+	
+	private static final String GET_PRODUCTSBYNAME_SQL="SELECT id, name,"
+			+ "description,price FROM products WHERE name LIKE ?";
 	@Override
 	public List<Product> getProductsByName(Product product) {
-		// TODO Auto-generated method stub
-		return null;
+		List<Map<String, Object>> resultList = jdbcOperations.queryForList(GET_PRODUCTSBYNAME_SQL, product.getName());	
+		List<Product> products = new ArrayList<Product>();
+		for(Map<String, Object> map: resultList) {
+			Product ps = new Product();
+			ps.setId((int)map.get("id"));
+			ps.setDescription((String)map.get("description"));
+			ps.setName((String)map.get("name"));
+			ps.setPrice((Float)map.get("price"));
+			products.add(ps);
+		
+		}
+		return products;
 	}
-
+	
+	
+	
 	@Override
 	public void deleteProductsById(Product product) {
 		// TODO Auto-generated method stub
 		
 	}
-
+	
+	private static final String SELECT_PRODUCTSBYID_SQL = "SELECT id, name,description,price FROM products WHERE id=?";
 	@Override
 	public Product getProductsById(Product product) {
 		// TODO Auto-generated method stub
-		return null;
+		Product result = jdbcOperations.queryForObject(SELECT_PRODUCTSBYID_SQL, new ProductRowMapper(), product.getId());	
+		return result;
+	}
+	
+	private static final class ProductRowMapper implements RowMapper<Product>{
+
+		@Override
+		public Product mapRow(ResultSet rs, int rowNum) throws SQLException {
+			// TODO Auto-generated method stub
+			
+			return new Product(			
+			rs.getInt("id"),
+			rs.getString("name"),
+			rs.getString("description"),
+			rs.getFloat("price"));
+		}
+		
 	}
 
 	@Override

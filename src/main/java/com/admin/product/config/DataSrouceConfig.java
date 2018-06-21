@@ -8,7 +8,7 @@ import org.springframework.jdbc.core.JdbcOperations;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 @Configuration
-@ComponentScan(basePackages="com.admin.product.repo")
+//@ComponentScan(basePackages="com.admin.product.repo")
 public class DataSrouceConfig {
 	
 	
@@ -25,9 +25,11 @@ public class DataSrouceConfig {
 		
 	}
 	
-	@Bean
-	public JdbcOperations jdbcTemplate(BasicDataSource dataSrouce) {
-		return new JdbcTemplate(dataSrouce);
-	}
+	//remove this configration for add jdbc starter
+	//<artifactId>spring-boot-starter-jdbc</artifactId>
+//	@Bean
+//	public JdbcOperations jdbcTemplate(BasicDataSource dataSrouce) {
+//		return new JdbcTemplate(dataSrouce);
+//	}
 	
 }

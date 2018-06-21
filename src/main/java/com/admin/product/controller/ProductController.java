@@ -1,16 +1,21 @@
 package com.admin.product.controller;
 
 import java.sql.SQLException;
+import java.util.List;
 
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import com.admin.product.model.Product;
 import com.admin.product.service.ProductService;
+
+//import app10d.ProductForm;
 
 @Controller
 @RequestMapping("/product")
@@ -28,7 +33,37 @@ public class ProductController {
     public String addProduct(@Valid Product product, Errors errors) throws SQLException{  	
 
 		service.save(product);
+		return "ProductDetails";  
+//		return "redirect:/product/"+product.getId();
 			
-		return "ProductDetails";
     }
+	
+	@RequestMapping(value="/{id}",method=RequestMethod.GET)
+    public String showProductDetail(@PathVariable String id, Model model) throws SQLException{
+		
+		Product product = new Product();
+		product.setId(Integer.parseInt(id));		
+		Product result = service.searchById(product);
+		model.addAttribute("product", result);
+		return "ProductDetails";  	
+			
+    }	
+	
+	@RequestMapping(value="/search",method=RequestMethod.GET)
+    public String showSearchProductForm(){
+        return "SearchProductForm";
+    }
+	
+	@RequestMapping(value="/search",method=RequestMethod.POST)
+    public String searchProduct (Product product,Model model) throws SQLException{  	
+		List<Product> products=service.search(product);		
+		model.addAttribute("products",products);
+		return "SearchProductDetails";
+		
+    }
+	@RequestMapping(value="/showall",method=RequestMethod.GET)
+    public String showallProducts(){
+        return "ShowProductDetails";
+    }
+	
 }

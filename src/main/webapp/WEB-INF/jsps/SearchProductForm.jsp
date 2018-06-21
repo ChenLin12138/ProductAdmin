@@ -9,7 +9,7 @@
 <body>
 <div id="global">
 		<h3>Add a product</h3>
-		<form method="post" action="product_result">
+		<form method="post" action="/product/search">
 			<table>
 			<tr>
 				<td>Product name:</td>
