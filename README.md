@@ -6,6 +6,7 @@ What's the proejct</br>
 What's tools we have ued:</br>
 1.Maven</br>
 2.Spring framework/mvc/boot</br>
+3.DBCP data connection pool</br>
 </br>
 What's the propurse of this project?</br>
 1.Trainning project for my wife.</br>
