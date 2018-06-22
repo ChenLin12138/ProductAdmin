@@ -13,7 +13,7 @@
 <p>
 <h5>Details:</h5>
 <c:forEach items="${products}" var="product">
-Product Id:${product.id}<br/>
+Product Id:${product.pid}<br/>
 Name:${product.name }<br/>
 Description:${product.description}<br/>
 Price:$${product.price}<br/>

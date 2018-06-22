@@ -33,17 +33,17 @@ public class ProductController {
     public String addProduct(@Valid Product product, Errors errors) throws SQLException{  	
 
 		service.save(product);
-		return "ProductDetails";  
-//		return "redirect:/product/"+product.getId();
+//		return "ProductDetails";  
+		return "redirect:/product/"+product.getPid();
 			
     }
 	
-	@RequestMapping(value="/{id}",method=RequestMethod.GET)
-    public String showProductDetail(@PathVariable String id, Model model) throws SQLException{
+	@RequestMapping(value="/{pid}",method=RequestMethod.GET)
+    public String showProductDetail(@PathVariable String pid, Model model) throws SQLException{
 		
 		Product product = new Product();
-		product.setId(Integer.parseInt(id));		
-		Product result = service.searchById(product);
+		product.setPid(pid);		
+		Product result = service.searchByPid(product);
 		model.addAttribute("product", result);
 		return "ProductDetails";  	
 			

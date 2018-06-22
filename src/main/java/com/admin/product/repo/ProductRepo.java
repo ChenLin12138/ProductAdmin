@@ -18,5 +18,6 @@ public interface ProductRepo{
 		
 		Product getProductsById(Product product) throws SQLException;
 		
-		void saveProductsById(Product product) throws SQLException;
+		Product getProductsByPid(Product product) throws SQLException;
+		
 }

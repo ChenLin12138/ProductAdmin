@@ -38,6 +38,12 @@ public class ProductService {
 		Product result = productRepo.getProductsById(product);
 		return result;
 	}
+	
+	public Product searchByPid(Product product) throws SQLException {
+		
+		Product result = productRepo.getProductsByPid(product);
+		return result;
+	}
 
 //	public List<Product> search(Product product) {
 //

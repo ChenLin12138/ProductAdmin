@@ -10,6 +10,10 @@ public class Product implements Serializable{
 		
 	private static final long serialVersionUID=748392348L;
 		
+		private int id;
+		
+		private String pid;
+
 		@NotNull
 		@Size(min=1,max=50)
 		private String name;
@@ -19,17 +23,18 @@ public class Product implements Serializable{
 		@Min(value = 0)
 		private float price;
 		
-		private int id;
+
 		
 		public Product() {
 			
 		}
 		
-		public Product(int id, String name, String description, float price) {
+		public Product(int id, String pid, String name, String description, float price) {
+			this.id=id;
+			this.pid=pid;
 			this.name=name;
 			this.description=description;
 			this.price=price;
-			this.id=id;
 		}
 
 		public String getName() {
@@ -63,4 +68,14 @@ public class Product implements Serializable{
 		public void setId(int id) {
 			this.id=id;
 		}
+
+		public String getPid() {
+			return pid;
+		}
+
+		public void setPid(String pid) {
+			this.pid = pid;
+		}
+		
+		
 }

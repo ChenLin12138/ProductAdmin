@@ -54,21 +54,22 @@ public class ProductRepoImpl implements ProductRepo {
 //		return products;
 //	}
 
-	private static final String INSERT_PRODUCT_SQL = "INSERT INTO products" + "(name,description,price)"
-			+ "VALUES(?,?,?)";
+	private static final String INSERT_PRODUCT_SQL = "INSERT INTO products" + "(pid,name,description,price)"
+			+ "VALUES(?,?,?,?)";
 	
 	@Override
 	public void insert(Product product) throws SQLException{
 		
 		jdbcOperations.update(INSERT_PRODUCT_SQL,
+				product.getPid(),
 				product.getName(),
 				product.getDescription(),
 				product.getPrice()
 				);
 	}
 
-	private static final String GET_PRODUCTS_SQL="SELECT name,"
-			+ "description,price,id FROM products";
+	private static final String GET_PRODUCTS_SQL="SELECT id, pid, name,"
+			+ "description,price FROM products";
 	@Override
 	public List<Product> getProducts() {
 		List<Map<String, Object>> resultList = jdbcOperations.queryForList(GET_PRODUCTS_SQL);	
@@ -76,6 +77,7 @@ public class ProductRepoImpl implements ProductRepo {
 		for(Map<String, Object> map: resultList) {
 			Product ps = new Product();
 			ps.setId((int)map.get("id"));
+			ps.setPid((String)map.get("pid"));
 			ps.setDescription((String)map.get("description"));
 			ps.setName((String)map.get("name"));
 			ps.setPrice((Float)map.get("price"));
@@ -84,7 +86,7 @@ public class ProductRepoImpl implements ProductRepo {
 		return products;
 	}
 	
-	private static final String GET_PRODUCTSBYNAME_SQL="SELECT id, name,"
+	private static final String GET_PRODUCTSBYNAME_SQL="SELECT id, pid, name,"
 			+ "description,price FROM products WHERE name LIKE ?";
 	@Override
 	public List<Product> getProductsByName(Product product) {
@@ -93,6 +95,7 @@ public class ProductRepoImpl implements ProductRepo {
 		for(Map<String, Object> map: resultList) {
 			Product ps = new Product();
 			ps.setId((int)map.get("id"));
+			ps.setPid((String)map.get("pid"));
 			ps.setDescription((String)map.get("description"));
 			ps.setName((String)map.get("name"));
 			ps.setPrice((Float)map.get("price"));
@@ -110,7 +113,7 @@ public class ProductRepoImpl implements ProductRepo {
 		
 	}
 	
-	private static final String SELECT_PRODUCTSBYID_SQL = "SELECT id, name,description,price FROM products WHERE id=?";
+	private static final String SELECT_PRODUCTSBYID_SQL = "SELECT id, pid, name,description,price FROM products WHERE id=?";
 	@Override
 	public Product getProductsById(Product product) {
 		// TODO Auto-generated method stub
@@ -126,6 +129,7 @@ public class ProductRepoImpl implements ProductRepo {
 			
 			return new Product(			
 			rs.getInt("id"),
+			rs.getString("pid"),
 			rs.getString("name"),
 			rs.getString("description"),
 			rs.getFloat("price"));
@@ -133,10 +137,12 @@ public class ProductRepoImpl implements ProductRepo {
 		
 	}
 
+	private static final String SELECT_PRODUCTSBYPID_SQL = "SELECT id, pid, name,description,price FROM products WHERE pid=?";
 	@Override
-	public void saveProductsById(Product product) {
+	public Product getProductsByPid(Product product) {
 		// TODO Auto-generated method stub
-		
+		Product result = jdbcOperations.queryForObject(SELECT_PRODUCTSBYPID_SQL, new ProductRowMapper(), product.getPid());	
+		return result;
 	}
 
 //	private static final String GET_PRODUCTSBYNAME_SQL = "SELECT name,"

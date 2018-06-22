@@ -8,7 +8,7 @@
 </head>
 <body>
 <div id="global">
-		<h3>Add a product</h3>
+		<h3>Search a product</h3>
 		<form method="post" action="/product/search">
 			<table>
 			<tr>

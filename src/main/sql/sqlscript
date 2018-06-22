@@ -1,11 +1,13 @@
 CREATE TABLE `products` (
 	`id` INT(11) NOT NULL AUTO_INCREMENT,
+	`pid` CHAR(18) NOT NULL COLLATE 'utf8_bin',
 	`name` VARCHAR(255) NOT NULL COLLATE 'utf8_bin',
 	`description` VARCHAR(1000) NULL DEFAULT NULL COLLATE 'utf8_bin',
 	`price` FLOAT NOT NULL,
-	PRIMARY KEY (`id`)
+	PRIMARY KEY (`id`),
+	INDEX `indexpid` (`pid`)
 )
 COLLATE='utf8_bin'
 ENGINE=InnoDB
-AUTO_INCREMENT=11
+AUTO_INCREMENT=18
 ;

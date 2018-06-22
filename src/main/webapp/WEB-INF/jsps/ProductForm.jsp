@@ -13,6 +13,10 @@
 		<form method="post" action="/product/add">
 			<table>
 			<tr>
+				<td>Product id:</td>
+				<td><input type="text" name="pid"/></td>
+			</tr>
+			<tr>
 				<td>Product name:</td>
 				<td><input type="text" name="name"/></td>
 			</tr>
