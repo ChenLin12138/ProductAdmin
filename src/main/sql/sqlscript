@@ -1,13 +1,18 @@
+CREATE DATABASE `prodadmin` /*!40100 COLLATE 'utf8_bin' */;
+
 CREATE TABLE `products` (
 	`id` INT(11) NOT NULL AUTO_INCREMENT,
-	`pid` CHAR(18) NOT NULL COLLATE 'utf8_bin',
+	`pid` CHAR(11) NOT NULL COLLATE 'utf8_bin',
 	`name` VARCHAR(255) NOT NULL COLLATE 'utf8_bin',
-	`description` VARCHAR(1000) NULL DEFAULT NULL COLLATE 'utf8_bin',
+	`description` VARCHAR(1000) NOT NULL COLLATE 'utf8_bin',
 	`price` FLOAT NOT NULL,
 	PRIMARY KEY (`id`),
-	INDEX `indexpid` (`pid`)
+	UNIQUE INDEX `indexpid` (`pid`)
 )
 COLLATE='utf8_bin'
 ENGINE=InnoDB
-AUTO_INCREMENT=18
+AUTO_INCREMENT=24
 ;
+
+
+INSERT INTO `prodadmin`.`products` (`pid`, `name`, `description`, `price`) VALUES ('56673898767', 'iphonex', 'cell phone', '8000');

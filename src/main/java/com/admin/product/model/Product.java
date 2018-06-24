@@ -12,12 +12,15 @@ public class Product implements Serializable{
 		
 		private int id;
 		
+		@NotNull
+		@Size(min=11,max=11,message="{pid.size}")
 		private String pid;
 
 		@NotNull
 		@Size(min=1,max=50)
 		private String name;
 		
+		@NotNull
 		private String description;
 		
 		@Min(value = 0)
