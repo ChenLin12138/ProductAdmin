@@ -10,8 +10,8 @@ A low-B project, we try to make it has higger bigger</br>
 </br>
 <b>What's the propurse of this project?</b></br>
 1.Trainning project for my wife.</br>
-2.Build a strong demo for simple crud, we need to include security, cache later.</br>
-<b>How to start this project</b>
+2.Build a strong demo for simple crud, we need to include security, cache later.</br></br>
+<b>How to start this project</b></br>
 1.Download srouce code from this project.</br>
 2.Install Java and Maven in your computer</br>
 3.Install mysql in your pc.</br>
