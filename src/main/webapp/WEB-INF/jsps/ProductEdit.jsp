@@ -9,7 +9,7 @@
 <body>
 <div id="global">
 		<h3>Amend a product</h3>
-		<form method="post" action="product_update">
+		<form method="post" action="/product/edit">
 			<table>
 			<tr>
 				<td>Product name:</td>
@@ -23,16 +23,20 @@
 				<td>Price $</td>
 				<td><input type="text" name="price" value=${product.price}></td>
 			</tr>
+			
 			<tr>
-				<td>Id</td>
-				<td><input type="text" name="id" value=${product.id}></td>
+				<td>Pid</td>
+				<td><input type="text" name="pid" value=${product.pid}></td>
 			</tr>
 			<tr>
 				<td><input type="reset"/></td>
 				<td><input type="submit" value="Update Prodct"/></td>
 			</tr>
+			
+			<input type="hidden" name="id" value=${product.id}></td>
+			
 			</table>
-		</form>
+	</form>
 	</div>
 </body>
 </html>

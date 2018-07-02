@@ -2,10 +2,7 @@ package com.admin.product.config;
 
 import org.apache.commons.dbcp.BasicDataSource;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.jdbc.core.JdbcOperations;
-import org.springframework.jdbc.core.JdbcTemplate;
 
 @Configuration
 //@ComponentScan(basePackages="com.admin.product.repo")
@@ -24,12 +21,5 @@ public class DataSrouceConfig {
 		return dataSrouce;
 		
 	}
-	
-	//remove this configration for add jdbc starter
-	//<artifactId>spring-boot-starter-jdbc</artifactId>
-//	@Bean
-//	public JdbcOperations jdbcTemplate(BasicDataSource dataSrouce) {
-//		return new JdbcTemplate(dataSrouce);
-//	}
 	
 }

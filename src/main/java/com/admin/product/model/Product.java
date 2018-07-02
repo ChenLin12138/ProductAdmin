@@ -3,7 +3,6 @@ package com.admin.product.model;
 import java.io.Serializable;
 
 import javax.validation.constraints.Min;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 public class Product implements Serializable{
@@ -12,21 +11,18 @@ public class Product implements Serializable{
 		
 		private int id;
 		
-		@NotNull
 		@Size(min=11,max=11,message="{pid.size}")
 		private String pid;
 
-		@NotNull
-		@Size(min=1,max=50)
+		@Size(min=1,max=50,message="{name.size}")
 		private String name;
 		
-		@NotNull
+		@Size(min=1,max=255,message="{description.size}")
 		private String description;
 		
-		@Min(value = 0)
+		@Min(value = 0,message="{price.min}")
 		private float price;
 		
-
 		
 		public Product() {
 			

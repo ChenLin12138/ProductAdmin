@@ -145,6 +145,23 @@ public class ProductRepoImpl implements ProductRepo {
 		return result;
 	}
 
+
+	private static final String DELETE_PRODUCTSBYID_SQL = "DELETE FROM products WHERE id=?";
+	@Override
+	public void deleteById(Product product) throws SQLException {
+		jdbcOperations.update(DELETE_PRODUCTSBYID_SQL,product.getId());
+		
+	}
+
+	
+	private static final String UPDATE_PRODUCT_SQL = "UPDATE products SET name=?,description=?,price=?,pid=? WHERE id=?";
+	
+	@Override
+	public void updateById(Product product) throws SQLException {
+		jdbcOperations.update(UPDATE_PRODUCT_SQL,product.getName(),product.getDescription(),product.getPrice(),product.getPid(),product.getId());
+		
+	}
+
 //	private static final String GET_PRODUCTSBYNAME_SQL = "SELECT name,"
 //			+ "description,price FROM products WHERE name LIKE ?";
 //

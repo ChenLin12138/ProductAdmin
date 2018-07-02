@@ -44,6 +44,16 @@ public class ProductService {
 		Product result = productRepo.getProductsByPid(product);
 		return result;
 	}
+public void deleteById(Product product) throws SQLException {
+		
+		productRepo.deleteById(product);
+		
+	}
+public void updateById(Product product) throws SQLException {
+	
+	productRepo.updateById(product);
+	
+}
 
 //	public List<Product> search(Product product) {
 //

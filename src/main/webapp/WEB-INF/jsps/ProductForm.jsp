@@ -20,16 +20,18 @@
 			</tr>
 			<tr>
 				<td>Product name:</td>
-				<td><input type="text" name="name"/></td>
+				<td><sf:input path="name"/></td> 
+				<td><sf:errors path="name" cssClass="error"/><td>
 			</tr>
 			<tr>
 				<td>Description:</td>
-				<td><input type="text" name="description"/></td>
+				<td><sf:input path="description"/></td> 
+				<td><sf:errors path="description" cssClass="error"/><td>
 			</tr>
 			<tr>
 				<td>Price</td>
-				<td><input type="text" name="price"/></td>
-			</tr>
+				<td><sf:input path="price"/></td> 
+				<td><sf:errors path="price" cssClass="error"/><td>			</tr>
 			<tr>
 				<td><input type="reset"/></td>
 				<td><input type="submit" value="Add Prodct"/></td>

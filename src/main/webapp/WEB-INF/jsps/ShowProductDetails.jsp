@@ -14,10 +14,11 @@
 <h5>Details:</h5>
 
 <c:forEach items="${products}" var="product">
-Product Id:${product.pid} <a href="/app10d/product_delete?id=${product.id}">Delete</a>&nbsp<a href="/app10d/product_edit?id=${product.id}">Edit</a><br/>
+Product Pid:${product.pid} <a href="/product/delete?id=${product.id}">Delete</a>&nbsp<a href="/product/edit?id=${product.id}">Edit</a><br/>
 Name:${product.name }<br/>
 Description:${product.description}<br/>
 Price:$${product.price}<br/>
+<input type="hidden" name="id" value=${product.id}>
 <br/>
 </c:forEach>
 
